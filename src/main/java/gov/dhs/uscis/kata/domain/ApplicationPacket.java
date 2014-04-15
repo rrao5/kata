@@ -3,6 +3,7 @@ package gov.dhs.uscis.kata.domain;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -39,7 +40,8 @@ public class ApplicationPacket {
 	private DegreeTypeEnum degreeType;
 	@ManyToOne( optional = false, fetch=FetchType.LAZY)
 	private Applicant applicant;
-	@ManyToOne( optional = false, fetch=FetchType.LAZY)
+	@Basic
+    @Enumerated(EnumType.STRING)
 	private DepartmentEnum deparment;
 
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")

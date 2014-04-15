@@ -75,11 +75,16 @@
 			<classifier>runtime</classifier>
 			<scope>runtime</scope>
 		</dependency>
-		
-	<!-- Common helpers -->
+
+		<!-- Common helpers -->
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.jadira.usertype</groupId>
+			<artifactId>usertype.core</artifactId>
+			<version>3.1.0.CR1</version>
 		</dependency>
 	</dependencies>
 

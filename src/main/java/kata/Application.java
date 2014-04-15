@@ -27,10 +27,14 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-@ComponentScan
-@EnableAutoConfiguration
 @Configuration
+@ComponentScan("gov.dhs.uscis.kata.services")
+@EnableTransactionManagement
+
+@EnableAutoConfiguration
+
 @EnableJpaRepositories("gov.dhs.uscis.kata.repository")
 public class Application  extends SpringBootServletInitializer {
 	
@@ -41,7 +45,8 @@ public class Application  extends SpringBootServletInitializer {
 
     @Bean
     public DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder().setType(H2).build();
+        return new EmbeddedDatabaseBuilder().setType(H2).
+        		build();
     }
 
     @Bean
@@ -73,11 +78,11 @@ public class Application  extends SpringBootServletInitializer {
     		SpringApplication.run(Application.class, args);
      }
 
-	private static void run() {
-		AbstractApplicationContext context = new AnnotationConfigApplicationContext("gov.dhs.uscis.kata.repository");
-        applicantRepository = context.getBean(ApplicantRepository.class);
-        AbstractApplicationContext context1 = new AnnotationConfigApplicationContext("gov.dhs.uscis.kata.services");
-        applicantService = context1.getBean(ApplicantService.class);
+/*	private static void run() {
+		//AbstractApplicationContext context = new AnnotationConfigApplicationContext("gov.dhs.uscis.kata.repository");
+        //applicantRepository = context.getBean(ApplicantRepository.class);
+//        AbstractApplicationContext context1 = new AnnotationConfigApplicationContext("gov.dhs.uscis.kata.services");
+        //applicantService = context.getBean(ApplicantService.class);
         // save a couple of Applicants
         Applicant a1 = new Applicant();
         a1.setFirstName("Jack");
@@ -129,7 +134,7 @@ public class Application  extends SpringBootServletInitializer {
             System.out.println(bauer);
         }
 
-        context.close();
-        context1.close();
-	}
+        //context.close();
+        //context1.close();
+	}*/
 }
