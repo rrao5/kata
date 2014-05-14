@@ -1,7 +1,0 @@
-gov\dhs\uscis\kata\domain\Applicant.class
-gov\dhs\uscis\kata\repository\DepartmentRefRepository.class
-gov\dhs\uscis\kata\repository\ApplicantRepository.class
-gov\dhs\uscis\kata\domain\DegreeTypeEnum.class
-gov\dhs\uscis\kata\domain\ApplicationPacket.class
-kata\Application.class
-gov\dhs\uscis\kata\domain\DepartmentRef.class

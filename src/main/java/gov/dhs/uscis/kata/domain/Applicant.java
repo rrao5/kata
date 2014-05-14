@@ -12,7 +12,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 
-
 @Entity
 @Getter
 @Setter
@@ -28,7 +27,7 @@ public class Applicant {
     @Column(name="USER_ID", unique = true)
     private String userId;
     private String password;
-    
+
     
 }
 

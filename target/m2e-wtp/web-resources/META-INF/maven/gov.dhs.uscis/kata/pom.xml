@@ -1,179 +1,270 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
 	<groupId>gov.dhs.uscis</groupId>
 	<artifactId>kata</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-
-	<name>kata</name>
-	<description>Demo project</description>
 	<packaging>war</packaging>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.0.0.RC1</version>
-	</parent>
+	<version>0.1</version>
+	<name>Code Kata</name>
+	<description>Spring Data JPA Tutorial Part One</description>
+	<licenses>
+		<license>
+			<name>Apache License 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0</url>
+		</license>
+	</licenses>
 
+	<repositories>
+		<repository>
+			<id>repository.jboss.org-public</id>
+			<name>JBoss repository</name>
+			<url>https://repository.jboss.org/nexus/content/groups/public</url>
+		</repository>
+	</repositories>
 	<properties>
-		<spring.version>4.0.0.RELEASE</spring.version>
-		<hibernate-entitymanager.version>4.3.1.Final</hibernate-entitymanager.version>
-		<spring-data-jpa.version>1.5.0.BUILD-SNAPSHOT</spring-data-jpa.version>
-		<jackson.version>2.3.0</jackson.version>
-		<sd.rest>2.0.0.BUILD-SNAPSHOT</sd.rest>
-		<start-class>kata.Application</start-class>
+		<hibernate.version>4.0.1.Final</hibernate.version>
+		<mysql.connector.version>5.1.18</mysql.connector.version>
+		<slf4j.version>1.6.1</slf4j.version>
+		<spring.version>3.1.0.RELEASE</spring.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<querydsl.version>2.3.2</querydsl.version>
+		<jackson.version>1.9.4</jackson.version>
 	</properties>
-
-
 	<dependencies>
+		<!-- Apache Commons -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-aop</artifactId>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
+		<!-- Spring Framework -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<!-- Spring MVC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>2.2.2</version>
+		</dependency>
+		<!-- Spring Data JPA -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>1.0.2.RELEASE</version>
+		</dependency>
+		<!-- Jackson -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-core-asl</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-jaxrs</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<!-- Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		<!-- Querydsl -->
+		<dependency>
+			<groupId>com.mysema.querydsl</groupId>
+			<artifactId>querydsl-core</artifactId>
+			<version>${querydsl.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mysema.querydsl</groupId>
+			<artifactId>querydsl-apt</artifactId>
+			<version>${querydsl.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.mysema.querydsl</groupId>
+			<artifactId>querydsl-jpa</artifactId>
+			<version>${querydsl.version}</version>
+		</dependency>
+		<!-- Hibernate Validator -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>4.2.0.Final</version>
+		</dependency>
+		<!-- H2 Database -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
+			<version>1.3.160</version>
 		</dependency>
-
+		<!-- BoneCP -->
+		<dependency>
+			<groupId>com.jolbox</groupId>
+			<artifactId>bonecp</artifactId>
+			<version>0.7.1.RELEASE</version>
+		</dependency>
+		<!-- Servlet API 3.0 -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.0.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<!-- Logging dependencies -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.12.6</version>
+			<version>1.12.4</version>
+			<scope>provided</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>com.github.peichhorn</groupId>
-			<artifactId>lombok-pg</artifactId>
-			<version>0.11.3</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.peichhorn</groupId>
-			<artifactId>lombok-pg</artifactId>
-			<version>0.11.3</version>
-			<classifier>runtime</classifier>
-			<scope>runtime</scope>
-		</dependency>
-
-		<!-- Common helpers -->
+		<!-- Joda time -->
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
+			<version>2.3</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.jadira.usertype</groupId>
 			<artifactId>usertype.core</artifactId>
-			<version>3.1.0.CR1</version>
+			<version>3.0.0.GA</version>
+		</dependency>
+
+		<!-- Testing Dependencies -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.9</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>1.8.5</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
+		<finalName>kata</finalName>
 		<plugins>
-
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+				<configuration>
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+				</configuration>
 			</plugin>
-
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.2</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<reportPlugins>
+						<!-- Cobertura Plugin -->
+						<plugin>
+							<groupId>org.codehaus.mojo</groupId>
+							<artifactId>cobertura-maven-plugin</artifactId>
+							<version>2.5.1</version>
+						</plugin>
+					</reportPlugins>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
-
-	<repositories>
-		<!-- <repository> -->
-		<!-- <id>spring-snapshots</id> -->
-		<!-- <name>Spring Snapshots</name> -->
-		<!-- <url>http://repo.springsource.org/snapshot</url> -->
-		<!-- <snapshots> -->
-		<!-- <enabled>true</enabled> -->
-		<!-- </snapshots> -->
-		<!-- </repository> -->
-		<!-- <repository> -->
-		<!-- <id>spring-milestones</id> -->
-		<!-- <name>Spring Milestones</name> -->
-		<!-- <url>http://repo.springsource.org/milestone</url> -->
-		<!-- <snapshots> -->
-		<!-- <enabled>true</enabled> -->
-		<!-- </snapshots> -->
-		<!-- </repository> -->
-		<repository>
-			<id>projectlombok.org</id>
-			<url>http://projectlombok.org/mavenrepo</url>
-		</repository>
-		<repository>
-			<id>spring-snapshots-io</id>
-			<url>http://repo.spring.io/snapshot</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>spring-milestones-io</id>
-			<url>http://repo.spring.io/milestone</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-
-	</repositories>
-	<pluginRepositories>
-		<!-- <pluginRepository> -->
-		<!-- <id>spring-snapshots</id> -->
-		<!-- <name>Spring Snapshots</name> -->
-		<!-- <url>http://repo.springsource.org/snapshot</url> -->
-		<!-- <snapshots> -->
-		<!-- <enabled>true</enabled> -->
-		<!-- </snapshots> -->
-		<!-- </pluginRepository> -->
-		<!-- <pluginRepository> -->
-		<!-- <id>spring-milestones</id> -->
-		<!-- <name>Spring Milestones</name> -->
-		<!-- <url>http://repo.springsource.org/milestone</url> -->
-		<!-- <snapshots> -->
-		<!-- <enabled>true</enabled> -->
-		<!-- </snapshots> -->
-		<!-- </pluginRepository> -->
-		<pluginRepository>
-			<id>spring-snapshots-io</id>
-			<url>http://repo.spring.io/snapshot</url>
-		</pluginRepository>
-		<pluginRepository>
-			<id>spring-milestones-io</id>
-			<url>http://repo.spring.io/milestone</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</pluginRepository>
-
-	</pluginRepositories>
-
 </project>

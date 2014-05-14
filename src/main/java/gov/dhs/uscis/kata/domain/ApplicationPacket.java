@@ -22,15 +22,12 @@ import lombok.ToString;
 import org.hibernate.annotations.Type;
 import org.joda.time.DateTime;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-
 
 @Entity
 @Getter
 @Setter
 @ToString(exclude = "documents")
 @Table(name = "APPLICANT_PACKET")
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY, isGetterVisibility = JsonAutoDetect.Visibility.NONE)
 
 public class ApplicationPacket {
 	@Id
@@ -46,7 +43,9 @@ public class ApplicationPacket {
 
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime submiteddDate;
-
+	@Enumerated(EnumType.STRING)
+    private ApplicationStatusEnum applicationStatusEnum = ApplicationStatusEnum.DRAFT;
+    
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Document> documents = new HashSet<Document>();
 

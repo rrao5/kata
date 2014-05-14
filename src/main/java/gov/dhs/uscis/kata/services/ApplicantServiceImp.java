@@ -1,15 +1,15 @@
 package gov.dhs.uscis.kata.services;
 
-import javax.transaction.Transactional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
 import gov.dhs.uscis.kata.domain.Applicant;
 import gov.dhs.uscis.kata.repository.ApplicantRepository;
 
-@Component("applicationService")
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 @Service
 @Transactional
 public class ApplicantServiceImp implements ApplicantService {
